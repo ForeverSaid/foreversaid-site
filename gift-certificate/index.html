@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Gift Certificate — ForeverSaid</title>
+<meta name="description" content="Generate and print your ForeverSaid gift certificate.">
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Your Gift Certificate — ForeverSaid">
+<meta property="og:description" content="Generate and print your ForeverSaid gift certificate.">
+<meta property="og:image" content="https://foreversaid.co/images/hero-bg.jpg">
+<meta property="og:url" content="https://foreversaid.co">
+<meta property="og:site_name" content="ForeverSaid">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Gift Certificate — ForeverSaid">
+<meta name="twitter:description" content="Generate and print your ForeverSaid gift certificate.">
+<meta name="twitter:image" content="https://foreversaid.co/images/hero-bg.jpg">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6LGVNGSCRC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6LGVNGSCRC');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1949946582281831');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1949946582281831&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<header id="header">
+  <nav>
+    <a href="/" class="logo">Forever<span>Said</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#how">How It Works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#gift">Give as a Gift</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/#pricing" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<section class="about-header">
+  <div class="container">
+    <div class="section-label">Gift Certificate</div>
+    <h1 class="section-title">Your gift is ready</h1>
+    <p class="section-desc" style="margin: 8px auto 0;">Personalize your gift certificate below, then download the PDF or print it directly.</p>
+  </div>
+</section>
+
+<section style="max-width: 700px; margin: 0 auto; padding: 20px 24px 100px;">
+
+  <!-- PERSONALIZATION FORM -->
+  <div id="formSection" style="background: var(--card-bg); border: 2px solid var(--soft-border); border-radius: 16px; padding: 40px 36px; margin-bottom: 32px;">
+    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px;">Personalize your certificate</h2>
+
+    <div style="margin-bottom: 20px;">
+      <label style="display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 6px;">Recipient's name</label>
+      <input type="text" id="gc-recipient" placeholder="e.g. Mom, Grandma Rose, The Johnson Family" style="width: 100%; padding: 12px 16px; border: 2px solid var(--soft-border); border-radius: 6px; font-size: 1rem; font-family: inherit; background: var(--card-bg);" oninput="updatePreview()">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label style="display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 6px;">From</label>
+      <input type="text" id="gc-from" placeholder="e.g. With love, Sarah and the kids" style="width: 100%; padding: 12px 16px; border: 2px solid var(--soft-border); border-radius: 6px; font-size: 1rem; font-family: inherit; background: var(--card-bg);" oninput="updatePreview()">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label style="display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 6px;">Personal message (optional)</label>
+      <textarea id="gc-message" rows="3" placeholder="e.g. We wanted to give you something that lasts forever — your stories, in your voice, for all of us to treasure." style="width: 100%; padding: 12px 16px; border: 2px solid var(--soft-border); border-radius: 6px; font-size: 1rem; font-family: inherit; background: var(--card-bg); resize: vertical;" oninput="updatePreview()"></textarea>
+    </div>
+  </div>
+
+  <!-- LIVE PREVIEW -->
+  <div style="margin-bottom: 32px;">
+    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 16px; text-align: center;">Preview</h2>
+    <div style="box-shadow: 0 8px 40px rgba(26,23,20,0.12); border-radius: 8px; overflow: hidden;">
+      <div id="certificatePreview" style="width: 700px; height: 500px; background: #1A1714; color: #FAF6F1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 52px 48px; text-align: center; position: relative; overflow: hidden; box-sizing: border-box;">
+        <div style="position: absolute; inset: 14px; border: 1px solid rgba(212,168,83,0.3); border-radius: 4px; pointer-events: none;"></div>
+        <div style="position: absolute; inset: 18px; border: 1px solid rgba(212,168,83,0.15); border-radius: 4px; pointer-events: none;"></div>
+        <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.05em;"><span style="color: #FAF6F1;">Forever</span><span style="color: #D4A853;">Said</span></p>
+        <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #D4A853; margin-bottom: 10px;">Gift Certificate</p>
+        <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.7rem; font-weight: 500; margin-bottom: 8px; line-height: 1.3;" id="preview-recipient">For: Your Recipient</p>
+        <div style="width: 60px; height: 1px; background: #D4A853; margin: 14px auto;"></div>
+        <p style="font-size: 0.95rem; font-weight: 400; color: rgba(250,246,241,0.85); max-width: 420px; line-height: 1.6; margin-bottom: 8px;">Your family has gifted you a storytelling experience.</p>
+        <p style="font-size: 0.82rem; font-weight: 300; color: rgba(250,246,241,0.6); max-width: 400px; line-height: 1.6; margin-bottom: 14px;">We'll help you record your life stories and turn them into a podcast your family can listen to forever. Just visit the link below when you're ready to get started.</p>
+        <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 0.9rem; font-style: italic; color: rgba(250,246,241,0.6); max-width: 360px; line-height: 1.6; margin-bottom: 10px;" id="preview-message"></p>
+        <p style="font-size: 0.85rem; color: #D4A853; margin-bottom: 18px;" id="preview-from"></p>
+        <div style="background: rgba(212,168,83,0.15); border: 1px solid rgba(212,168,83,0.3); border-radius: 6px; padding: 10px 28px; margin-bottom: 14px;">
+          <p style="font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(250,246,241,0.5); margin-bottom: 4px;">Redemption Code</p>
+          <p style="font-family: monospace; font-size: 1.1rem; font-weight: 600; color: #D4A853; letter-spacing: 0.15em;" id="preview-code">FS-XXXX</p>
+        </div>
+        <p style="font-size: 0.62rem; color: rgba(250,246,241,0.4); line-height: 1.5;">Redeem at foreversaid.co · Email hello@foreversaid.co with your code</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <button onclick="downloadPDF()" id="downloadBtn" class="btn-primary" style="flex: 1; min-width: 200px; text-align: center; cursor: pointer; font-family: inherit; border: none; font-size: 1rem;">Download PDF</button>
+    <button onclick="printCertificate()" class="btn-secondary" style="flex: 1; min-width: 200px; text-align: center; cursor: pointer; font-family: inherit; font-size: 1rem;">Print Certificate</button>
+  </div>
+
+  <p style="margin-top: 16px; font-size: 0.88rem; color: var(--text-secondary); font-weight: 300; text-align: center;">Be sure to save or print your certificate — you'll need the redemption code when the recipient is ready to start.</p>
+
+  <!-- WHAT HAPPENS NEXT -->
+  <div style="background: #F5F0E8; border-radius: 12px; padding: 28px 24px; margin-top: 32px;">
+    <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 12px;">What happens next?</h3>
+    <p style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.75; margin-bottom: 8px;">Print the certificate or share the PDF digitally — tuck it in a birthday card, wrap it with a bow, or present it at a family gathering.</p>
+    <p style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.75; margin-bottom: 8px;">When the recipient is ready, they email <strong>hello@foreversaid.co</strong> with their redemption code and we'll get them started right away. No rush, no expiration.</p>
+    <p style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; line-height: 1.75;">Questions? <a href="mailto:hello@foreversaid.co" style="color: var(--rich-amber);">hello@foreversaid.co</a></p>
+  </div>
+
+</section>
+
+<script>
+// Extract Stripe session ID from URL and use last 10 chars as redemption code
+function getRedemptionCode() {
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session_id');
+  if (sessionId) {
+    // Take last 10 characters of the session ID
+    var shortCode = sessionId.slice(-10).toUpperCase();
+    return 'FS-' + shortCode;
+  }
+  // Fallback if no session_id (direct page access for testing)
+  return 'FS-PREVIEW';
+}
+
+var redemptionCode = getRedemptionCode();
+document.getElementById('preview-code').textContent = redemptionCode;
+
+function updatePreview() {
+  var recipient = document.getElementById('gc-recipient').value.trim();
+  var from = document.getElementById('gc-from').value.trim();
+  var message = document.getElementById('gc-message').value.trim();
+  document.getElementById('preview-recipient').textContent = recipient ? 'For: ' + recipient : 'For: Your Recipient';
+  document.getElementById('preview-from').textContent = from ? '— ' + from : '';
+  document.getElementById('preview-message').textContent = message || '';
+}
+
+function downloadPDF() {
+  var btn = document.getElementById('downloadBtn');
+  btn.textContent = 'Generating PDF...';
+  btn.style.opacity = '0.6';
+
+  var element = document.getElementById('certificatePreview');
+
+  html2canvas(element, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: '#1A1714',
+    logging: false
+  }).then(function(canvas) {
+    var imgData = canvas.toDataURL('image/jpeg', 0.95);
+    var pdf = new jspdf.jsPDF({
+      orientation: 'landscape',
+      unit: 'in',
+      format: [7, 5]
+    });
+    pdf.addImage(imgData, 'JPEG', 0, 0, 7, 5);
+    pdf.save('ForeverSaid-Gift-Certificate.pdf');
+
+    btn.textContent = 'Download PDF';
+    btn.style.opacity = '1';
+  }).catch(function(err) {
+    console.error('PDF generation error:', err);
+    btn.textContent = 'Download PDF';
+    btn.style.opacity = '1';
+    alert('There was an issue generating the PDF. Please try the Print Certificate button instead and select "Save as PDF".');
+  });
+}
+
+function printCertificate() {
+  var element = document.getElementById('certificatePreview');
+
+  html2canvas(element, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: '#1A1714',
+    logging: false
+  }).then(function(canvas) {
+    var printWindow = window.open('', '_blank');
+    printWindow.document.write(
+      '<!DOCTYPE html><html><head><title>ForeverSaid Gift Certificate</title>' +
+      '<style>@page{size:7in 5in;margin:0}html,body{margin:0;padding:0;width:7in;height:5in;}img{width:100%;height:100%;display:block;}</style>' +
+      '</head><body><img src="' + canvas.toDataURL('image/jpeg', 0.95) + '"></body></html>'
+    );
+    printWindow.document.close();
+    setTimeout(function() { printWindow.print(); }, 500);
+  });
+}
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Forever<span>Said</span></div>
+    <p>Your stories, preserved forever.</p>
+    <p style="margin-top: 8px;">© 2026 ForeverSaid · <a href="mailto:hello@foreversaid.co">hello@foreversaid.co</a></p>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Mobile nav
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.emotional-item, .who-card, .step, .deliverable-item').forEach(el => {
+  observer.observe(el);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// FAQ toggles
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// Waitlist form
+const wf = document.getElementById('waitlistForm');
+if (wf) {
+  wf.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function(response) {
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('waitlistSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(function(err) {
+      alert('Something went wrong. Please try again.');
+    });
+  });
+}
+</script>
+</body>
+</html>

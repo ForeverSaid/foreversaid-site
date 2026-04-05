@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intake Form — ForeverSaid</title>
+<meta name="description" content="Tell us about your storyteller so we can create personalized interview questions.">
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Intake Form — ForeverSaid">
+<meta property="og:description" content="Tell us about your storyteller so we can create personalized interview questions.">
+<meta property="og:image" content="https://foreversaid.co/images/hero-bg.jpg">
+<meta property="og:url" content="https://foreversaid.co">
+<meta property="og:site_name" content="ForeverSaid">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Intake Form — ForeverSaid">
+<meta name="twitter:description" content="Tell us about your storyteller so we can create personalized interview questions.">
+<meta name="twitter:image" content="https://foreversaid.co/images/hero-bg.jpg">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6LGVNGSCRC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6LGVNGSCRC');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1949946582281831');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1949946582281831&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<header id="header">
+  <nav>
+    <a href="/" class="logo">Forever<span>Said</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#how">How It Works</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#gift">Give as a Gift</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/faq/">FAQ</a></li>
+      <li><a href="/#pricing" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </nav>
+</header>
+
+<section class="about-header">
+  <div class="container">
+    <div class="section-label">Step 1 of your project</div>
+    <h1 class="section-title">Tell us about your storyteller</h1>
+    <p class="section-desc" style="margin: 0 auto; margin-top: 16px;">The more you share here, the more personalized and meaningful the interview questions will be. This takes about 10 minutes.</p>
+  </div>
+</section>
+
+<section style="max-width: 680px; margin: 0 auto; padding: 0 24px 100px;">
+
+  <form name="intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/intake-success/" style="display: flex; flex-direction: column; gap: 0;">
+
+    <input type="hidden" name="form-name" value="intake">
+    <p style="display: none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <!-- SECTION 1: THE BASICS -->
+    <div style="padding: 40px 0 24px; border-bottom: 1px solid var(--soft-border);">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">The Basics</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;">Let's start with who you are and who we're creating this for.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="your_name">Your name <span class="req">*</span></label>
+      <input class="form-input" type="text" id="your_name" name="your_name" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="your_email">Your email address <span class="req">*</span></label>
+      <input class="form-input" type="email" id="your_email" name="your_email" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="storyteller_name">Storyteller's first name <span class="req">*</span></label>
+      <p class="form-hint">This is the person who will be recorded — it might be you, a parent, grandparent, or someone else.</p>
+      <input class="form-input" type="text" id="storyteller_name" name="storyteller_name" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="relationship">What is your relationship to the storyteller? <span class="req">*</span></label>
+      <select class="form-input" id="relationship" name="relationship" required>
+        <option value="">Select one...</option>
+        <option value="self">I am the storyteller (recording myself)</option>
+        <option value="parent">Parent (mom or dad)</option>
+        <option value="grandparent">Grandparent</option>
+        <option value="spouse">Spouse or partner</option>
+        <option value="sibling">Sibling</option>
+        <option value="other_family">Other family member</option>
+        <option value="friend">Friend</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="storyteller_age">How old is the storyteller (approximately)? <span class="req">*</span></label>
+      <input class="form-input" type="text" id="storyteller_age" name="storyteller_age" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="grew_up">Where did the storyteller grow up?</label>
+      <p class="form-hint">City, state, country — whatever feels right.</p>
+      <input class="form-input" type="text" id="grew_up" name="grew_up">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="lives_now">Where does the storyteller live now?</label>
+      <input class="form-input" type="text" id="lives_now" name="lives_now">
+    </div>
+
+    <!-- SECTION 2: THEIR STORY -->
+    <div style="padding: 48px 0 24px; border-bottom: 1px solid var(--soft-border);">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Their Story</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;">This is the heart of the form. The more detail here, the better your personalized questions will be.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="describe_person">In a few sentences, describe the storyteller as a person. What makes them who they are? <span class="req">*</span></label>
+      <p class="form-hint">Think about their personality, their energy, what people love about them. There are no wrong answers.</p>
+      <textarea class="form-input form-textarea" id="describe_person" name="describe_person" rows="4" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="important_topics">What are the 3–5 most important topics or life chapters you want preserved? <span class="req">*</span></label>
+      <p class="form-hint">Examples: childhood, immigration story, military service, career, how they met their spouse, parenting philosophy, faith journey, overcoming hardship, family recipes, cultural traditions.</p>
+      <textarea class="form-input form-textarea" id="important_topics" name="important_topics" rows="4" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="specific_stories">Are there specific stories you've heard them tell that you'd love captured?</label>
+      <p class="form-hint">The stories they always bring up at family dinners, the ones you've heard a hundred times but never want to forget.</p>
+      <textarea class="form-input form-textarea" id="specific_stories" name="specific_stories" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="never_asked">What do you wish you knew about them that you've never asked?</label>
+      <p class="form-hint">What have you always been curious about but never found the right moment to ask?</p>
+      <textarea class="form-input form-textarea" id="never_asked" name="never_asked" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="career">What career or professional life did/does the storyteller have?</label>
+      <p class="form-hint">Brief description — what they did, how long, what it meant to them.</p>
+      <textarea class="form-input form-textarea" id="career" name="career" rows="3"></textarea>
+    </div>
+
+    <!-- SECTION 3: FAMILY AND RELATIONSHIPS -->
+    <div style="padding: 48px 0 24px; border-bottom: 1px solid var(--soft-border);">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Family &amp; Relationships</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;">Helps us craft questions about the people who shaped their life.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="love_story">Is the storyteller married or in a long-term partnership? If so, is there a love story worth capturing?</label>
+      <textarea class="form-input form-textarea" id="love_story" name="love_story" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="children">Does the storyteller have children? If so, how many and roughly what ages?</label>
+      <input class="form-input" type="text" id="children" name="children">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="important_people">Are there important family members, friends, or mentors who shaped the storyteller's life?</label>
+      <p class="form-hint">People whose names might come up — we can craft questions around these relationships.</p>
+      <textarea class="form-input form-textarea" id="important_people" name="important_people" rows="3"></textarea>
+    </div>
+
+    <!-- SECTION 4: TONE AND SENSITIVITIES -->
+    <div style="padding: 48px 0 24px; border-bottom: 1px solid var(--soft-border);">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">Tone &amp; Sensitivities</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;">Helps us tailor the questions to how this person communicates.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">How would you describe the storyteller's communication style? <span class="req">*</span></label>
+      <p class="form-hint">Check all that apply.</p>
+      <div class="checkbox-group">
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="warm_talkative"> Warm and talkative — they love to share</label>
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="quiet_reserved"> Quiet and reserved — they need gentle prompting</label>
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="funny_animated"> Funny and animated — they tell stories with energy</label>
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="thoughtful_philosophical"> Thoughtful and philosophical — they go deep</label>
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="matter_of_fact"> Matter-of-fact — they keep things practical</label>
+        <label class="checkbox-label"><input type="checkbox" name="comm_style" value="emotional"> Emotional — they wear their heart on their sleeve</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="topics_avoid">Are there any topics we should avoid or approach carefully?</label>
+      <p class="form-hint">Sensitive subjects, painful memories, family conflicts — anything that could cause distress. Completely confidential.</p>
+      <textarea class="form-input form-textarea" id="topics_avoid" name="topics_avoid" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="health_considerations">Are there any health considerations we should be aware of?</label>
+      <p class="form-hint">Memory issues, hearing difficulties, fatigue concerns — helps us adjust question pacing.</p>
+      <textarea class="form-input form-textarea" id="health_considerations" name="health_considerations" rows="2"></textarea>
+    </div>
+
+    <!-- SECTION 5: THE GIFT -->
+    <div style="padding: 48px 0 24px; border-bottom: 1px solid var(--soft-border);">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 6px;">The Big Picture</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 300;">A few final questions to make sure we deliver exactly what you're hoping for.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="gift_for">Is this a gift for the storyteller, or for the family? <span class="req">*</span></label>
+      <select class="form-input" id="gift_for" name="gift_for" required>
+        <option value="">Select one...</option>
+        <option value="for_storyteller">Gift for the storyteller (they know about it)</option>
+        <option value="for_family">Gift for the family (storyteller is helping create it)</option>
+        <option value="both">Both — it's for everyone</option>
+        <option value="self">I'm recording this for myself, for my kids/family</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="deadline">Is there a specific occasion or deadline?</label>
+      <p class="form-hint">Birthday, anniversary, holiday, or just "whenever it's ready."</p>
+      <input class="form-input" type="text" id="deadline" name="deadline">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="success">What would make this project a home run for you? <span class="req">*</span></label>
+      <p class="form-hint">This is the most important question for us. Tell us what you're hoping to feel when you hear the finished episodes.</p>
+      <textarea class="form-input form-textarea" id="success" name="success" rows="4" required></textarea>
+    </div>
+
+    <!-- SUBMIT -->
+    <div style="padding-top: 40px; text-align: center;">
+      <button type="submit" class="btn-primary" style="width: 100%; max-width: 400px; font-size: 1.05rem; padding: 18px;">Submit Intake Form</button>
+      <p style="margin-top: 16px; font-size: 0.82rem; color: var(--text-secondary); font-weight: 300;">Your responses are confidential and used only to create your personalized questions.</p>
+    </div>
+
+  </form>
+
+</section>
+
+<style>
+.form-group {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(229, 221, 212, 0.5);
+}
+.form-group:last-of-type {
+  border-bottom: none;
+}
+.form-label {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--deep-ink);
+}
+.req {
+  color: var(--rich-amber);
+}
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--soft-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Source Sans 3', Georgia, serif;
+  font-weight: 400;
+  background: var(--card-bg);
+  color: var(--deep-ink);
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-top: 4px;
+}
+.form-input:focus {
+  border-color: var(--rich-amber);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+select.form-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237A6F64' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--deep-ink);
+  cursor: pointer;
+}
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--rich-amber);
+  cursor: pointer;
+}
+</style>
+
+<script>
+document.getElementById('relationship').addEventListener('change', function() {
+  var isSelf = this.value === 'self';
+
+  // Section 2 header
+  var sec2Title = document.querySelectorAll('[style*="Their Story"], [style*="Your Story"]');
+
+  // Swap question labels and hints based on self vs other
+  var swaps = {
+    'storyteller_name': {
+      label: isSelf ? 'Your first name *' : "Storyteller's first name *",
+      hint: isSelf ? 'The name you go by.' : "This is the person who will be recorded — it might be you, a parent, grandparent, or someone else."
+    },
+    'storyteller_age': {
+      label: isSelf ? 'Your age (approximately) *' : 'How old is the storyteller (approximately)? *'
+    },
+    'grew_up': {
+      label: isSelf ? 'Where did you grow up?' : 'Where did the storyteller grow up?'
+    },
+    'lives_now': {
+      label: isSelf ? 'Where do you live now?' : 'Where does the storyteller live now?'
+    },
+    'describe_person': {
+      label: isSelf ? 'In a few sentences, describe yourself as a person. What makes you who you are? *' : 'In a few sentences, describe the storyteller as a person. What makes them who they are? *',
+      hint: isSelf ? 'Think about your personality, your energy, what people love about you.' : "Think about their personality, their energy, what people love about them. There are no wrong answers."
+    },
+    'important_topics': {
+      label: isSelf ? 'What are the 3–5 most important topics or life chapters you want to share? *' : 'What are the 3–5 most important topics or life chapters you want preserved? *'
+    },
+    'specific_stories': {
+      label: isSelf ? 'Are there specific stories you want to make sure are captured?' : "Are there specific stories you've heard them tell that you'd love captured?",
+      hint: isSelf ? 'The stories you always tell at family dinners, the ones that define who you are.' : "The stories they always bring up at family dinners, the ones you've heard a hundred times but never want to forget."
+    },
+    'never_asked': {
+      label: isSelf ? 'What do you want your family to know about you that you\'ve never said out loud?' : "What do you wish you knew about them that you've never asked?",
+      hint: isSelf ? "What have you never found the right moment to express?" : "What have you always been curious about but never found the right moment to ask?"
+    },
+    'career': {
+      label: isSelf ? 'What career or professional life have you had?' : 'What career or professional life did/does the storyteller have?',
+      hint: isSelf ? 'Brief description — what you did, how long, what it meant to you.' : "Brief description — what they did, how long, what it meant to them."
+    },
+    'love_story': {
+      label: isSelf ? 'Are you married or in a long-term partnership? Is there a love story worth capturing?' : 'Is the storyteller married or in a long-term partnership? If so, is there a love story worth capturing?'
+    },
+    'children': {
+      label: isSelf ? 'Do you have children? If so, how many and roughly what ages?' : 'Does the storyteller have children? If so, how many and roughly what ages?'
+    },
+    'important_people': {
+      label: isSelf ? 'Are there important family members, friends, or mentors who shaped your life?' : "Are there important family members, friends, or mentors who shaped the storyteller's life?",
+      hint: isSelf ? "People whose names might come up — we can craft questions around these relationships." : "People whose names might come up — we can craft questions around these relationships."
+    },
+    'health_considerations': {
+      label: isSelf ? 'Are there any health considerations we should be aware of?' : 'Are there any health considerations we should be aware of?',
+      hint: isSelf ? 'Fatigue concerns, voice issues — helps us adjust question pacing.' : "Memory issues, hearing difficulties, fatigue concerns — helps us adjust question pacing."
+    }
+  };
+
+  for (var id in swaps) {
+    var el = document.getElementById(id);
+    if (!el) continue;
+    var group = el.closest('.form-group');
+    if (!group) continue;
+    var label = group.querySelector('.form-label');
+    var hint = group.querySelector('.form-hint');
+    if (label && swaps[id].label) label.innerHTML = swaps[id].label;
+    if (hint && swaps[id].hint) hint.textContent = swaps[id].hint;
+  }
+
+  // Update section headers
+  var sectionHeaders = document.querySelectorAll('.form-group').length;
+  var sec2 = document.querySelectorAll('[style*="padding: 48px"]');
+  if (sec2[0]) {
+    var title = sec2[0].querySelector('p:first-child');
+    var subtitle = sec2[0].querySelector('p:last-child');
+    if (title) title.textContent = isSelf ? 'Your Story' : 'Their Story';
+    if (subtitle) subtitle.textContent = isSelf ? "This is the heart of the form. The more detail here, the better your personalized questions will be." : "This is the heart of the form. The more detail here, the better your personalized questions will be.";
+  }
+
+  // Update comm style label
+  var commLabel = document.querySelector('[for="comm_style"], .form-label');
+});
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Forever<span>Said</span></div>
+    <p>Your stories, preserved forever.</p>
+    <p style="margin-top: 8px;">© 2026 ForeverSaid · <a href="mailto:hello@foreversaid.co">hello@foreversaid.co</a></p>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Mobile nav
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.emotional-item, .who-card, .step, .deliverable-item').forEach(el => {
+  observer.observe(el);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// FAQ toggles
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// Waitlist form
+const wf = document.getElementById('waitlistForm');
+if (wf) {
+  wf.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function(response) {
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('waitlistSuccess').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(function(err) {
+      alert('Something went wrong. Please try again.');
+    });
+  });
+}
+</script>
+</body>
+</html>

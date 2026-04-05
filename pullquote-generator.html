@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForeverSaid — Pull-Quote Card Generator</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" href="/favicon.ico"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--warm-cream:#FAF6F1;--deep-ink:#1A1714;--warm-brown:#6B5B4E;--rich-amber:#B8860B;--soft-amber:#D4A853;--muted-sage:#8A9A7B;--light-sage:#E8EDE4;--soft-border:#E5DDD4;--text-secondary:#7A6F64;--card-bg:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',Georgia,serif;background:var(--warm-cream);color:var(--deep-ink);line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+
+.page-header{padding:60px 24px 40px;text-align:center}
+.page-header h1{font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:500;margin-bottom:8px}
+.page-header p{color:var(--text-secondary);font-size:.95rem;font-weight:300}
+
+/* INPUT SECTION */
+.input-section{padding:0 24px 40px}
+.input-section .container{max-width:600px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-family:'Playfair Display',Georgia,serif;font-size:.95rem;font-weight:600;margin-bottom:6px}
+.form-hint{font-size:.82rem;color:var(--text-secondary);font-weight:300;margin-bottom:8px}
+.form-input{width:100%;padding:14px 16px;border:2px solid var(--soft-border);border-radius:6px;font-size:1rem;font-family:inherit;background:var(--card-bg);color:var(--deep-ink);outline:none}
+.form-input:focus{border-color:var(--rich-amber)}
+.form-textarea{resize:vertical;min-height:80px;line-height:1.5}
+
+/* STYLE PICKER */
+.style-section{padding:0 24px 40px}
+.style-section .container{max-width:800px}
+.style-section h2{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-weight:600;margin-bottom:6px;text-align:center}
+.style-section .hint{text-align:center;color:var(--text-secondary);font-size:.88rem;font-weight:300;margin-bottom:24px}
+
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.style-option{border:3px solid var(--soft-border);border-radius:10px;cursor:pointer;overflow:hidden;transition:all .2s ease;position:relative}
+.style-option:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,23,20,.08)}
+.style-option.selected{border-color:var(--rich-amber);box-shadow:0 0 0 2px var(--rich-amber)}
+.style-option.selected::after{content:'\2713';position:absolute;top:8px;right:8px;width:22px;height:22px;background:var(--rich-amber);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+.style-preview{width:100%;aspect-ratio:5/4;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+.style-name{padding:8px;text-align:center;font-size:.78rem;font-weight:500;color:var(--text-secondary);background:var(--warm-cream);border-top:1px solid var(--soft-border)}
+
+/* COLOR OVERRIDE */
+.color-override{padding:20px 24px 40px}
+.color-override .container{max-width:600px;text-align:center}
+.color-toggle{font-size:.88rem;color:var(--rich-amber);cursor:pointer;font-weight:500;text-decoration:underline;margin-bottom:16px;display:inline-block}
+.color-controls{display:none;gap:24px;justify-content:center;align-items:center;margin-top:16px;flex-wrap:wrap}
+.color-controls.open{display:flex}
+.color-pair{display:flex;align-items:center;gap:8px}
+.color-pair label{font-size:.85rem;font-weight:500;color:var(--text-secondary)}
+.color-pair input[type="color"]{width:36px;height:36px;border:2px solid var(--soft-border);border-radius:6px;cursor:pointer;padding:2px;background:var(--card-bg)}
+
+/* PREVIEW + DOWNLOAD */
+.preview-section{padding:20px 24px 60px}
+.preview-section .container{max-width:800px;text-align:center}
+.preview-section h2{font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-weight:600;margin-bottom:24px}
+
+.card-preview-wrap{display:inline-block;margin-bottom:32px;box-shadow:0 8px 40px rgba(26,23,20,.1);border-radius:4px;overflow:hidden}
+
+/* THE ACTUAL CARD (canvas-like) */
+.quote-card{width:600px;height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 50px;text-align:center;position:relative}
+.quote-card .big-quote{font-size:4rem;line-height:1;opacity:.15;margin-bottom:8px}
+.quote-card .quote-text{font-size:1.4rem;line-height:1.6;margin-bottom:24px;max-width:480px}
+.quote-card .quote-dash{width:40px;height:2px;margin:0 auto 16px;opacity:.3}
+.quote-card .quote-name{font-size:1rem;letter-spacing:.05em}
+
+/* CARD STYLE VARIANTS */
+.card-style-1{background:#FAF6F1;color:#1A1714;font-family:'Cormorant Garamond',Georgia,serif}
+.card-style-1 .big-quote{color:#1A1714}.card-style-1 .quote-dash{background:#1A1714}.card-style-1 .quote-name{color:#7A6F64}
+
+.card-style-2{background:#1A1714;color:#FAF6F1;font-family:'Cormorant Garamond',Georgia,serif}
+.card-style-2 .big-quote{color:#FAF6F1}.card-style-2 .quote-dash{background:#FAF6F1}.card-style-2 .quote-name{color:#D4A853}
+
+.card-style-3{background:#FFFFFF;color:#1A1714;font-family:'Source Sans 3',sans-serif}
+.card-style-3 .big-quote{display:none}.card-style-3 .quote-text{border-left:4px solid #B8860B;padding-left:24px;text-align:left;font-weight:300;font-size:1.3rem}.card-style-3 .quote-dash{display:none}.card-style-3 .quote-name{text-align:left;align-self:flex-start;margin-left:24px;font-weight:500;color:#7A6F64;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em}
+
+.card-style-4{background:#2C2825;color:#FAF6F1;font-family:'Source Sans 3',sans-serif}
+.card-style-4 .big-quote{display:none}.card-style-4 .quote-text{border-left:4px solid #D4A853;padding-left:24px;text-align:left;font-weight:300;font-size:1.3rem}.card-style-4 .quote-dash{display:none}.card-style-4 .quote-name{text-align:left;align-self:flex-start;margin-left:24px;font-weight:500;color:#D4A853;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em}
+
+.card-style-5{background:#F5F0E8;color:#6B5B4E;font-family:'Caveat',cursive}
+.card-style-5 .big-quote{color:#6B5B4E;font-family:'Playfair Display',serif}.card-style-5 .quote-text{font-size:1.7rem;font-weight:500;line-height:1.5}.card-style-5 .quote-dash{background:#6B5B4E}.card-style-5 .quote-name{font-family:'Source Sans 3',sans-serif;font-size:.88rem;color:#7A6F64;letter-spacing:.05em}
+
+.card-style-6{background:#3B2F2A;color:#E8D5C4;font-family:'Caveat',cursive}
+.card-style-6 .big-quote{color:#E8D5C4;font-family:'Playfair Display',serif}.card-style-6 .quote-text{font-size:1.7rem;font-weight:500;line-height:1.5}.card-style-6 .quote-dash{background:#D4A853}.card-style-6 .quote-name{font-family:'Source Sans 3',sans-serif;font-size:.88rem;color:#D4A853;letter-spacing:.05em}
+
+.download-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.btn-dl{background:var(--deep-ink);color:var(--warm-cream);padding:12px 28px;border-radius:6px;border:none;font-size:.9rem;font-weight:500;font-family:inherit;cursor:pointer;transition:all .2s ease}
+.btn-dl:hover{background:var(--warm-brown);transform:translateY(-1px)}
+.btn-dl.outline{background:transparent;color:var(--deep-ink);border:2px solid var(--soft-border)}
+.btn-dl.outline:hover{border-color:var(--warm-brown);color:var(--warm-brown)}
+
+.preview-badge{position:fixed;top:16px;right:16px;z-index:200;background:var(--rich-amber);color:#fff;padding:6px 14px;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;opacity:.85;pointer-events:none}
+
+@media(max-width:768px){
+.style-grid{grid-template-columns:repeat(2,1fr)}
+.quote-card{width:100%;height:auto;aspect-ratio:5/4;padding:40px 30px}
+.quote-card .quote-text{font-size:1.1rem}
+.download-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<div class="preview-badge">Working Prototype</div>
+
+<section class="page-header">
+<div class="container">
+<h1>Pull-Quote Card Generator</h1>
+<p>Turn the most meaningful moments from your recordings into beautiful, shareable cards.</p>
+</div>
+</section>
+
+<!-- INPUT -->
+<section class="input-section">
+<div class="container">
+<div class="form-group">
+<label class="form-label">The quote</label>
+<p class="form-hint">Type or paste the most meaningful line from your recording.</p>
+<textarea class="form-input form-textarea" id="quoteText" rows="3" placeholder='e.g. "The best thing I ever did was say yes before I was ready. That&#39;s how all the good stuff starts."' oninput="updatePreview()"></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">Who said it</label>
+<input class="form-input" type="text" id="quoteName" placeholder="e.g. Margaret Kowalski, Grandma Rose, Dad" oninput="updatePreview()">
+</div>
+</div>
+</section>
+
+<!-- STYLE PICKER -->
+<section class="style-section">
+<div class="container">
+<h2>Choose a style</h2>
+<p class="hint">Click to select. Each style comes through in the preview below.</p>
+<div class="style-grid">
+
+<div class="style-option selected" onclick="selectStyle(1)" id="opt-1">
+<div class="style-preview" style="background:#FAF6F1;color:#1A1714;font-family:'Cormorant Garamond',serif">
+<div style="font-size:2rem;opacity:.15;line-height:1">&ldquo;</div>
+<div style="font-size:.8rem;line-height:1.4;font-style:italic;padding:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.65rem;color:#7A6F64;margin-top:8px">&mdash; Name</div>
+</div>
+<div class="style-name">Classic Light</div>
+</div>
+
+<div class="style-option" onclick="selectStyle(2)" id="opt-2">
+<div class="style-preview" style="background:#1A1714;color:#FAF6F1;font-family:'Cormorant Garamond',serif">
+<div style="font-size:2rem;opacity:.15;line-height:1">&ldquo;</div>
+<div style="font-size:.8rem;line-height:1.4;font-style:italic;padding:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.65rem;color:#D4A853;margin-top:8px">&mdash; Name</div>
+</div>
+<div class="style-name">Classic Dark</div>
+</div>
+
+<div class="style-option" onclick="selectStyle(3)" id="opt-3">
+<div class="style-preview" style="background:#FFFFFF;color:#1A1714;font-family:'Source Sans 3',sans-serif">
+<div style="border-left:3px solid #B8860B;padding-left:10px;text-align:left;font-size:.75rem;font-weight:300;line-height:1.4;margin:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.6rem;color:#7A6F64;margin-top:8px;text-align:left;margin-left:25px;text-transform:uppercase;letter-spacing:.05em">Name</div>
+</div>
+<div class="style-name">Modern Light</div>
+</div>
+
+<div class="style-option" onclick="selectStyle(4)" id="opt-4">
+<div class="style-preview" style="background:#2C2825;color:#FAF6F1;font-family:'Source Sans 3',sans-serif">
+<div style="border-left:3px solid #D4A853;padding-left:10px;text-align:left;font-size:.75rem;font-weight:300;line-height:1.4;margin:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.6rem;color:#D4A853;margin-top:8px;text-align:left;margin-left:25px;text-transform:uppercase;letter-spacing:.05em">Name</div>
+</div>
+<div class="style-name">Modern Dark</div>
+</div>
+
+<div class="style-option" onclick="selectStyle(5)" id="opt-5">
+<div class="style-preview" style="background:#F5F0E8;color:#6B5B4E;font-family:'Caveat',cursive">
+<div style="font-size:2rem;opacity:.15;line-height:1;font-family:'Playfair Display',serif">&ldquo;</div>
+<div style="font-size:.95rem;line-height:1.3;font-weight:500;padding:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.6rem;color:#7A6F64;margin-top:8px;font-family:'Source Sans 3',sans-serif">Name</div>
+</div>
+<div class="style-name">Warm Light</div>
+</div>
+
+<div class="style-option" onclick="selectStyle(6)" id="opt-6">
+<div class="style-preview" style="background:#3B2F2A;color:#E8D5C4;font-family:'Caveat',cursive">
+<div style="font-size:2rem;opacity:.15;line-height:1;font-family:'Playfair Display',serif">&ldquo;</div>
+<div style="font-size:.95rem;line-height:1.3;font-weight:500;padding:0 12px">The best stories are the ones we almost forgot to tell.</div>
+<div style="font-size:.6rem;color:#D4A853;margin-top:8px;font-family:'Source Sans 3',sans-serif">Name</div>
+</div>
+<div class="style-name">Warm Dark</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- COLOR OVERRIDE -->
+<section class="color-override">
+<div class="container">
+<span class="color-toggle" onclick="toggleColors()">Customize colors (optional)</span>
+<div class="color-controls" id="colorControls">
+<div class="color-pair">
+<label>Background</label>
+<input type="color" id="bgColor" value="#FAF6F1" onchange="applyCustomColors()">
+</div>
+<div class="color-pair">
+<label>Text</label>
+<input type="color" id="textColor" value="#1A1714" onchange="applyCustomColors()">
+</div>
+<div class="color-pair">
+<label>Accent</label>
+<input type="color" id="accentColor" value="#B8860B" onchange="applyCustomColors()">
+</div>
+<button class="btn-dl outline" style="font-size:.8rem;padding:8px 16px" onclick="resetColors()">Reset to style default</button>
+</div>
+</div>
+</section>
+
+<!-- LIVE PREVIEW -->
+<section class="preview-section">
+<div class="container">
+<h2>Your card</h2>
+<div class="card-preview-wrap">
+<div class="quote-card card-style-1" id="quoteCard">
+<div class="big-quote">&ldquo;</div>
+<div class="quote-text" id="cardQuote">"The best thing I ever did was say yes before I was ready. That's how all the good stuff starts."</div>
+<div class="quote-dash"></div>
+<div class="quote-name" id="cardName">&mdash; Margaret Kowalski</div>
+</div>
+</div>
+
+<div class="download-btns">
+<button class="btn-dl" onclick="downloadCard('print57')">Download 5&#215;7 Print</button>
+<button class="btn-dl" onclick="downloadCard('print810')">Download 8&#215;10 Print</button>
+<button class="btn-dl" onclick="downloadCard('social')">Download Square (Social)</button>
+<button class="btn-dl outline" onclick="resetAll()">Start Over</button>
+</div>
+</div>
+</section>
+
+<script>
+let currentStyle = 1;
+let customColors = false;
+
+function selectStyle(n) {
+  currentStyle = n;
+  customColors = false;
+  document.querySelectorAll('.style-option').forEach(function(el){ el.classList.remove('selected') });
+  document.getElementById('opt-'+n).classList.add('selected');
+
+  var card = document.getElementById('quoteCard');
+  card.className = 'quote-card card-style-' + n;
+
+  // Reset color pickers to match style
+  var styles = {
+    1: {bg:'#FAF6F1',text:'#1A1714',accent:'#1A1714'},
+    2: {bg:'#1A1714',text:'#FAF6F1',accent:'#D4A853'},
+    3: {bg:'#FFFFFF',text:'#1A1714',accent:'#B8860B'},
+    4: {bg:'#2C2825',text:'#FAF6F1',accent:'#D4A853'},
+    5: {bg:'#F5F0E8',text:'#6B5B4E',accent:'#6B5B4E'},
+    6: {bg:'#3B2F2A',text:'#E8D5C4',accent:'#D4A853'}
+  };
+  document.getElementById('bgColor').value = styles[n].bg;
+  document.getElementById('textColor').value = styles[n].text;
+  document.getElementById('accentColor').value = styles[n].accent;
+
+  // Clear any inline overrides
+  card.style.background = '';
+  card.style.color = '';
+}
+
+function applyCustomColors() {
+  customColors = true;
+  var card = document.getElementById('quoteCard');
+  var bg = document.getElementById('bgColor').value;
+  var text = document.getElementById('textColor').value;
+  var accent = document.getElementById('accentColor').value;
+
+  card.style.background = bg;
+  card.style.color = text;
+
+  var bigQ = card.querySelector('.big-quote');
+  if(bigQ) bigQ.style.color = text;
+
+  var dash = card.querySelector('.quote-dash');
+  if(dash) dash.style.background = accent;
+
+  var name = card.querySelector('.quote-name');
+  if(name) name.style.color = accent;
+
+  var qtext = card.querySelector('.quote-text');
+  if(qtext && (currentStyle===3||currentStyle===4)) qtext.style.borderLeftColor = accent;
+}
+
+function resetColors() {
+  customColors = false;
+  selectStyle(currentStyle);
+}
+
+function toggleColors() {
+  document.getElementById('colorControls').classList.toggle('open');
+}
+
+function updatePreview() {
+  var quote = document.getElementById('quoteText').value.trim();
+  var name = document.getElementById('quoteName').value.trim();
+
+  if(quote) {
+    // Add quotes if not already present
+    if(!quote.startsWith('"') && !quote.startsWith('\u201C')) quote = '\u201C' + quote;
+    if(!quote.endsWith('"') && !quote.endsWith('\u201D')) quote = quote + '\u201D';
+    document.getElementById('cardQuote').textContent = quote;
+  } else {
+    document.getElementById('cardQuote').textContent = '\u201CThe best thing I ever did was say yes before I was ready. That\u2019s how all the good stuff starts.\u201D';
+  }
+
+  if(name) {
+    document.getElementById('cardName').textContent = '\u2014 ' + name;
+  } else {
+    document.getElementById('cardName').textContent = '\u2014 Margaret Kowalski';
+  }
+}
+
+function downloadCard(size) {
+  var card = document.getElementById('quoteCard');
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+
+  // Set dimensions based on size
+  var w, h, sizeLabel;
+  if(size === 'print57') { w = 2100; h = 1500; sizeLabel = '5x7'; } // 5x7 at 300dpi
+  else if(size === 'print810') { w = 3000; h = 2400; sizeLabel = '8x10'; } // 8x10 at 300dpi
+  else { w = 1800; h = 1800; sizeLabel = 'square'; } // Square for social
+
+  canvas.width = w;
+  canvas.height = h;
+
+  // Get computed styles
+  var cs = window.getComputedStyle(card);
+  var bgColor = customColors ? document.getElementById('bgColor').value : cs.backgroundColor;
+  var textColor = customColors ? document.getElementById('textColor').value : cs.color;
+  var accentEl = card.querySelector('.quote-name');
+  var accentColor = accentEl ? window.getComputedStyle(accentEl).color : textColor;
+
+  // Draw background
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, w, h);
+
+  // Get text
+  var quoteText = document.getElementById('cardQuote').textContent;
+  var nameText = document.getElementById('cardName').textContent;
+
+  // Determine font based on style
+  var quoteFont, nameFont, quoteFontSize, nameFontSize;
+  if(currentStyle <= 2) {
+    quoteFont = 'italic FSIZE Cormorant Garamond, Georgia, serif';
+    nameFont = 'FSIZE Cormorant Garamond, Georgia, serif';
+  } else if(currentStyle <= 4) {
+    quoteFont = '300 FSIZE Source Sans 3, sans-serif';
+    nameFont = '500 FSIZE Source Sans 3, sans-serif';
+  } else {
+    quoteFont = '500 FSIZE Caveat, cursive';
+    nameFont = '400 FSIZE Source Sans 3, sans-serif';
+  }
+
+  quoteFontSize = Math.round(w * 0.032);
+  nameFontSize = Math.round(w * 0.018);
+
+  // Draw big opening quote for styles 1,2,5,6
+  if(currentStyle !== 3 && currentStyle !== 4) {
+    ctx.fillStyle = textColor;
+    ctx.globalAlpha = 0.12;
+    ctx.font = Math.round(w*0.08) + 'px Playfair Display, Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u201C', w/2, h*0.3);
+    ctx.globalAlpha = 1;
+  }
+
+  // Draw accent line for styles 3,4
+  if(currentStyle === 3 || currentStyle === 4) {
+    ctx.fillStyle = accentColor;
+    ctx.fillRect(w*0.15, h*0.32, 6, h*0.28);
+  }
+
+  // Draw quote text
+  ctx.fillStyle = textColor;
+  ctx.font = quoteFont.replace('FSIZE', quoteFontSize+'px');
+  ctx.textAlign = (currentStyle===3||currentStyle===4) ? 'left' : 'center';
+
+  var maxWidth = w * 0.65;
+  var xPos = (currentStyle===3||currentStyle===4) ? w*0.15 + 24 : w/2;
+  var yStart = (currentStyle===3||currentStyle===4) ? h*0.35 : h*0.38;
+  wrapText(ctx, quoteText, xPos, yStart, maxWidth, quoteFontSize * 1.55);
+
+  // Draw dash
+  if(currentStyle !== 3 && currentStyle !== 4) {
+    ctx.fillStyle = textColor;
+    ctx.globalAlpha = 0.25;
+    ctx.fillRect(w/2 - 30, h*0.72, 60, 3);
+    ctx.globalAlpha = 1;
+  }
+
+  // Draw name
+  ctx.fillStyle = accentColor;
+  ctx.font = nameFont.replace('FSIZE', nameFontSize+'px');
+  ctx.textAlign = (currentStyle===3||currentStyle===4) ? 'left' : 'center';
+  var nameX = (currentStyle===3||currentStyle===4) ? w*0.15 + 24 : w/2;
+  ctx.fillText(nameText, nameX, h*0.78);
+
+  // Download
+  var link = document.createElement('a');
+  link.download = 'ForeverSaid-Quote-' + sizeLabel + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  var words = text.split(' ');
+  var line = '';
+  for(var n = 0; n < words.length; n++) {
+    var testLine = line + words[n] + ' ';
+    var metrics = ctx.measureText(testLine);
+    if(metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line.trim(), x, y);
+      line = words[n] + ' ';
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line.trim(), x, y);
+}
+
+function resetAll() {
+  document.getElementById('quoteText').value = '';
+  document.getElementById('quoteName').value = '';
+  selectStyle(1);
+  updatePreview();
+}
+</script>
+</body>
+</html>

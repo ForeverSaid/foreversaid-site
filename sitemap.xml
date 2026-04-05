@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://foreversaid.co/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://foreversaid.co/about/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://foreversaid.co/faq/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://foreversaid.co/gift/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://foreversaid.co/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://foreversaid.co/blog/50-questions-to-ask-your-parents/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://foreversaid.co/blog/why-every-parent-should-record-a-podcast/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://foreversaid.co/terms/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://foreversaid.co/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
