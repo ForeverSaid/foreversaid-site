@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/diy-access/*"
+  to = "/kit/a7x9m2/"
+  status = 301

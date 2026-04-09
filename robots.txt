@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://foreversaid.co/sitemap.xml
+
+# Private pages - do not index
+Disallow: /kit/
+Disallow: /gift-certificate/
+Disallow: /intake/
+Disallow: /intake-success/
+Disallow: /thank-you/
+Disallow: /admin/
